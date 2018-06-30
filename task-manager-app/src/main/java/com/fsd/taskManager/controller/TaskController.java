@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fsd.taskManager.service.TaskService;
+import com.fsd.taskManager.vo.SearchParam;
 import com.fsd.taskManager.vo.TaskDetails;
 
 @RestController
@@ -25,8 +26,8 @@ public class TaskController {
 	}
 	
 	@RequestMapping(value = "/viewTask", method = RequestMethod.POST)
-	public List<TaskDetails> viewTask(@RequestBody TaskDetails taskDetails) {
-		return null;
+	public List<TaskDetails> viewTask(@RequestBody SearchParam searchParams) {
+		return taskService.viewTasks(searchParams);
 
 		
 

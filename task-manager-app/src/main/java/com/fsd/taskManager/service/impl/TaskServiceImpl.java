@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.fsd.taskManager.entity.ParentTask;
@@ -12,8 +13,10 @@ import com.fsd.taskManager.entity.Task;
 import com.fsd.taskManager.repository.ParentTaskRepository;
 import com.fsd.taskManager.repository.TaskRepository;
 import com.fsd.taskManager.service.TaskService;
+import com.fsd.taskManager.vo.SearchParam;
 import com.fsd.taskManager.vo.TaskDetails;
 
+@Service("taskService")
 public class TaskServiceImpl implements TaskService {
 
 	@Autowired
@@ -42,18 +45,18 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	public List<TaskDetails> viewTasks() {
+	public List<TaskDetails> viewTasks(SearchParam searchParam) {
 		List<TaskDetails> taskDetails = new ArrayList<>();
-		parentTaskRepository.findAll().stream().forEach(new Consumer<ParentTask>() {
+		taskRepository.search(searchParam.getTask(), searchParam.getParentTask(), searchParam.getPriority()).stream()
+				.forEach(new Consumer<Task>() {
 
-			@Override
-			public void accept(ParentTask t) {
-				TaskDetails details = new TaskDetails();
-				details.setParentTask(t.getParentTask());
-				// TODO Auto-generated method stub
+					@Override
+					public void accept(Task t) {
+						TaskDetails details = new TaskDetails();
+						// TODO Auto-generated method stub
 
-			}
-		});
+					}
+				});
 		return null;
 	}
 

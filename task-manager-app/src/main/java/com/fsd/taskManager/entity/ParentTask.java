@@ -16,8 +16,8 @@ import javax.persistence.Table;
 public class ParentTask {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	@Column(name="parent_id")
+	private Long id;
 	
 	@Column(name="parent_task")
 	private String parentTask;
@@ -25,11 +25,11 @@ public class ParentTask {
 	@OneToMany(mappedBy="parentTask",cascade=CascadeType.ALL)
 	private List<Task> tasks;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

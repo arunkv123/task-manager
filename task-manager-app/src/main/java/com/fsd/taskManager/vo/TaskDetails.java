@@ -2,6 +2,8 @@ package com.fsd.taskManager.vo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class TaskDetails {
 
 	private String task;
@@ -12,8 +14,10 @@ public class TaskDetails {
 	
 	private String parentTask;
 
+	@JsonFormat(pattern="MM/dd/yyyy")
 	private Date startDate;
 
+	@JsonFormat(pattern="MM/dd/yyyy")
 	private Date endDate;
 
 	public int getParentTaskId() {

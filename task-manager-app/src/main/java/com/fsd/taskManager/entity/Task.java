@@ -14,8 +14,8 @@ import javax.persistence.ManyToOne;
 public class Task {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int taskId;
+	@Column(name="task_id")
+	private Long taskId;
 	
 	@ManyToOne
 	@JoinColumn(name="parent_id")
@@ -31,11 +31,11 @@ public class Task {
 	@Column(name="end_date")
 	private Date endDate;
 
-	public int getTaskId() {
+	public Long getTaskId() {
 		return taskId;
 	}
 
-	public void setTaskId(int taskId) {
+	public void setTaskId(Long taskId) {
 		this.taskId = taskId;
 	}
 

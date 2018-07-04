@@ -1,7 +1,9 @@
 package com.fsd.taskManager.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +30,19 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public boolean addTask(TaskDetails taskDetails) {
 		Task task = new Task();
+		Date date = new Date();
+		ParentTask parentTask=null;
 		if (StringUtils.isEmpty(taskDetails.getParentTask())) {
-			ParentTask parentTask = new ParentTask();
+			parentTask = new ParentTask();
+			parentTask.setId(date.getTime());
 			parentTask.setParentTask(taskDetails.getTask());
 			parentTaskRepository.save(parentTask);
 		} else {
-			ParentTask parentTask = parentTaskRepository.findByParentTask(taskDetails.getParentTask());
+			parentTask = parentTaskRepository.findByParentTask(taskDetails.getParentTask());
 			task.setParentTask(parentTask);
 		}
+		task.setTaskId(date.getTime());
+		task.setParentTask(parentTask);
 		task.setEndDate(taskDetails.getEndDate());
 		task.setPriority(taskDetails.getPriority());
 		task.setStartDate(taskDetails.getStartDate());

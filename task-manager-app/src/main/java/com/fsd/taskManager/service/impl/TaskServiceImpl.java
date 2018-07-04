@@ -60,11 +60,12 @@ public class TaskServiceImpl implements TaskService {
 					@Override
 					public void accept(Task t) {
 						TaskDetails details = new TaskDetails();
-						// TODO Auto-generated method stub
-
+						details.setTask(t.getTask());
+						details.setPriority(t.getPriority());
+						taskDetails.add(details);
 					}
 				});
-		return null;
+		return taskDetails;
 	}
 
 	@Override

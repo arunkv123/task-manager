@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @EnableAutoConfiguration
 @Configuration
+//@EnableOAuth2Sso
 @ComponentScan(basePackages = { "com.fsd.taskManager" })
 public class TaskManagerApplication {
 	public static void main(String[] args) {

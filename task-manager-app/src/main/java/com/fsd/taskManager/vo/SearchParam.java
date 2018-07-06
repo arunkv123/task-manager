@@ -6,7 +6,9 @@ public class SearchParam {
 	
 	private String parentTask;
 	
-	private int priority;
+	private int priorityFrom;
+	
+	private int priorityTo;
 
 	public String getTask() {
 		return task;
@@ -24,12 +26,20 @@ public class SearchParam {
 		this.parentTask = parentTask;
 	}
 
-	public int getPriority() {
-		return priority;
+	public int getPriorityFrom() {
+		return priorityFrom;
 	}
 
-	public void setPriority(int priority) {
-		this.priority = priority;
+	public void setPriorityFrom(int priorityFrom) {
+		this.priorityFrom = priorityFrom;
 	}
-	
+
+	public int getPriorityTo() {
+		return priorityTo;
+	}
+
+	public void setPriorityTo(int priorityTo) {
+		this.priorityTo = priorityTo;
+	}
+
 }

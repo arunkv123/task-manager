@@ -20,6 +20,7 @@ public class TaskController {
 	@Autowired
 	private TaskService taskService;
 
+	//@PreAuthorize(value = "ROLE_USER")
 	@RequestMapping(value = "/addTask", method = RequestMethod.POST)
 	public String addTask(@RequestBody TaskDetails taskDetails) {
 
@@ -27,6 +28,7 @@ public class TaskController {
 
 	}
 	
+	//@PreAuthorize(value = "ROLE_USER")
 	@RequestMapping(value = "/viewTask", method = RequestMethod.POST)
 	public List<TaskDetails> viewTask(@RequestBody SearchParam searchParams) {
 		return taskService.viewTasks(searchParams);

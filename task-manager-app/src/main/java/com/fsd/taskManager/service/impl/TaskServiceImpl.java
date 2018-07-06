@@ -31,7 +31,7 @@ public class TaskServiceImpl implements TaskService {
 	public boolean addTask(TaskDetails taskDetails) {
 		Task task = new Task();
 		Date date = new Date();
-		ParentTask parentTask=null;
+		ParentTask parentTask = null;
 		if (StringUtils.isEmpty(taskDetails.getParentTask())) {
 			parentTask = new ParentTask();
 			parentTask.setId(date.getTime());
@@ -54,14 +54,16 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public List<TaskDetails> viewTasks(SearchParam searchParam) {
 		List<TaskDetails> taskDetails = new ArrayList<>();
-		taskRepository.search(searchParam.getTask(), searchParam.getParentTask(), searchParam.getPriority()).stream()
-				.forEach(new Consumer<Task>() {
+		taskRepository.search(searchParam.getTask(), searchParam.getParentTask(), searchParam.getPriorityFrom(),
+				searchParam.getPriorityTo()).stream().forEach(new Consumer<Task>() {
 
 					@Override
 					public void accept(Task t) {
 						TaskDetails details = new TaskDetails();
 						details.setTask(t.getTask());
 						details.setPriority(t.getPriority());
+						details.setEndDate(t.getEndDate());
+						details.setStartDate(t.getStartDate());
 						taskDetails.add(details);
 					}
 				});

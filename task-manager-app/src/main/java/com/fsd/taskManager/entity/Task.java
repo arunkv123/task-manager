@@ -31,6 +31,9 @@ public class Task {
 	@Column(name="end_date")
 	private Date endDate;
 
+	@Column(name="end_task")
+	private int endTask;
+	
 	public Long getTaskId() {
 		return taskId;
 	}
@@ -78,6 +81,14 @@ public class Task {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+
+	public int getEndTask() {
+		return endTask;
+	}
+
+	public void setEndTask(int endTask) {
+		this.endTask = endTask;
 	}
 	
 }

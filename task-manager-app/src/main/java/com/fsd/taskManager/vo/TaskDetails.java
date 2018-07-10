@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class TaskDetails {
 
+	private Long id; 
+	
 	private String task;
 
 	private int priority;
@@ -14,11 +16,19 @@ public class TaskDetails {
 	
 	private String parentTask;
 
-	@JsonFormat(pattern="MM/dd/yyyy")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date startDate;
 
-	@JsonFormat(pattern="MM/dd/yyyy")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date endDate;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public int getParentTaskId() {
 		return parentTaskId;

@@ -13,4 +13,6 @@ public interface TaskService {
 	public List<TaskDetails> viewTasks(SearchParam searchParam);
 
 	public boolean updateTask(TaskDetails taskDetails);
+	
+	public boolean endTask(long taskId);
 }

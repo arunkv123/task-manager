@@ -39,7 +39,12 @@ public class TaskServiceImpl implements TaskService {
 			parentTaskRepository.save(parentTask);
 		} else {
 			parentTask = parentTaskRepository.findByParentTask(taskDetails.getParentTask());
-			task.setParentTask(parentTask);
+			if (null == parentTask) {
+				parentTask = new ParentTask();
+				parentTask.setId(date.getTime());
+				parentTask.setParentTask(taskDetails.getParentTask());
+				parentTaskRepository.save(parentTask);
+			}
 		}
 		task.setTaskId(date.getTime());
 		task.setParentTask(parentTask);
@@ -47,6 +52,7 @@ public class TaskServiceImpl implements TaskService {
 		task.setPriority(taskDetails.getPriority());
 		task.setStartDate(taskDetails.getStartDate());
 		task.setTask(taskDetails.getTask());
+		task.setEndTask(0);
 		taskRepository.save(task);
 		return true;
 	}
@@ -60,7 +66,9 @@ public class TaskServiceImpl implements TaskService {
 					@Override
 					public void accept(Task t) {
 						TaskDetails details = new TaskDetails();
+						details.setId(t.getTaskId());
 						details.setTask(t.getTask());
+						details.setParentTask(t.getParentTask().getParentTask());
 						details.setPriority(t.getPriority());
 						details.setEndDate(t.getEndDate());
 						details.setStartDate(t.getStartDate());
@@ -72,8 +80,41 @@ public class TaskServiceImpl implements TaskService {
 
 	@Override
 	public boolean updateTask(TaskDetails taskDetails) {
-		// TODO Auto-generated method stub
-		return false;
+
+		Task task = taskRepository.findById(taskDetails.getId()).get();
+		Date date = new Date();
+		ParentTask parentTask = null;
+		if (StringUtils.isEmpty(taskDetails.getParentTask())) {
+			parentTask = new ParentTask();
+			parentTask.setId(date.getTime());
+			parentTask.setParentTask(taskDetails.getTask());
+			parentTaskRepository.save(parentTask);
+		} else {
+			parentTask = parentTaskRepository.findByParentTask(taskDetails.getParentTask());
+			if (null == parentTask) {
+				parentTask = new ParentTask();
+				parentTask.setId(date.getTime());
+				parentTask.setParentTask(taskDetails.getParentTask());
+				parentTaskRepository.save(parentTask);
+			}
+		}
+		task.setParentTask(parentTask);
+		task.setEndDate(taskDetails.getEndDate());
+		task.setPriority(taskDetails.getPriority());
+		task.setStartDate(taskDetails.getStartDate());
+		task.setTask(taskDetails.getTask());
+		taskRepository.save(task);
+
+		return true;
+	}
+
+	@Override
+	public boolean endTask(long taskId) {
+		Task task = taskRepository.findById(taskId).get();
+		task.setEndTask(1);
+		task.setEndDate(new Date());
+		taskRepository.save(task);
+		return true;
 	}
 
 }

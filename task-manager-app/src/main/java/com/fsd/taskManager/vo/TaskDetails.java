@@ -15,12 +15,23 @@ public class TaskDetails {
 	private int parentTaskId;
 	
 	private String parentTask;
+	
+	private int endTask;
 
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date startDate;
 
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date endDate;
+	
+
+	public int getEndTask() {
+		return endTask;
+	}
+
+	public void setEndTask(int endTask) {
+		this.endTask = endTask;
+	}
 
 	public Long getId() {
 		return id;

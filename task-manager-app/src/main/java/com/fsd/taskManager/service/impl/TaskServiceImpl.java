@@ -71,6 +71,7 @@ public class TaskServiceImpl implements TaskService {
 						details.setPriority(t.getPriority());
 						details.setEndDate(t.getEndDate());
 						details.setStartDate(t.getStartDate());
+						details.setEndTask(t.getEndTask());
 						taskDetails.add(details);
 					}
 				});

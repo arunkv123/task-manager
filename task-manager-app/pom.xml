@@ -55,26 +55,28 @@
 			<url>http://localhost:8081/repository/maven-snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
-	<build>
-	<plugins>
-	<plugin>
-  <artifactId>maven-resources-plugin</artifactId>
-  <executions>
-    <execution>
-      <id>copy-resources</id>
-      <phase>validate</phase>
-      <goals><goal>copy-resources</goal></goals>
-      <configuration>
-        <outputDirectory>${basedir}/target/classes/static/</outputDirectory >
-        <resources>
-          <resource>
-            <directory>C:/Users/Admin/task-manager-js/dist/Task-Manager</directory >
-          </resource>
-        </resources>
-      </configuration>
-    </execution>
-  </executions>
-</plugin>
-</plugins>
-</build>
+	<!-- <build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/classes/public/</outputDirectory>
+							<resources>
+								<resource>
+									<directory>C:/Users/Admin/task-manager-js/dist/Task-Manager</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build> -->
 </project>
